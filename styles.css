@@ -1,0 +1,359 @@
+/* Reset / base */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0f0f0fe8;
+    /* dark base */
+    color: #eee;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* Header / Navbar */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 10, 15, 0.9);
+    padding: 15px 30px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ddd;
+}
+
+
+/* Navigation menu items */
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.navbar nav ul li a {
+    font-size: 1rem;
+    padding: 8px 12px;
+    color: #ddd;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.navbar nav ul li a:hover {
+    color: #00ffc3;
+    /* neon green accent */
+    text-shadow: 0 0 8px #ff004e, 0 0 15px #ff004e;
+}
+
+
+/* Hero section */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    background: url('hero-background.jpg') center center/cover no-repeat;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(77, 24, 202, 0.863) 0%, rgb(72, 175, 13) 50%, rgb(0, 225, 255) 100%);
+    /* dark overlay for mood */
+    z-index: 1;
+}
+
+
+/* Logo in hero */
+
+.hero img {
+    width: 300px;
+    max-width: 80%;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 15px #ff004e);
+    z-index: 2;
+}
+
+.hero img.bounce-img {
+    /* Make the image block-level or inline-block so transform behaves nicely */
+    display: block;
+    margin: 0 auto;
+    /* Animation settings */
+    animation: bounce 5s infinite;
+    /* You can adjust duration (2s), easing, etc. */
+}
+
+@keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+
+/* Slide‑in animation for h1 */
+
+@keyframes slideInGlow {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+        text-shadow: none;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+        text-shadow: 0 0 10px #ff004e, 0 0 20px #ff004e, 0 0 30px #ff004e, 0 0 40px #ff004e;
+    }
+}
+
+.hero h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    z-index: 2;
+    font-size: 3rem;
+    color: #0a0a0a;
+}
+
+
+/* Sections common style */
+
+.section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #eeff00;
+}
+
+.about p,
+.contact p,
+.services-grid .service-item p {
+    color: #fdfcfc;
+    font-size: 1.125rem;
+}
+
+
+/* Services grid */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-item {
+    background: #1a1a2e;
+    /* deep dark blue‑purple tone */
+    text-align: center;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 0, 78, 0.5);
+}
+
+.service-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.service-item h3 {
+    font-size: 1.5rem;
+    margin: 15px;
+    color: #fff;
+}
+
+.service-item p {
+    margin: 0 15px 20px 15px;
+}
+
+
+/* Gallery */
+
+.gallery-grid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s, filter 0.3s;
+    filter: brightness(.6);
+}
+
+.gallery-item img:hover {
+    transform: scale(1.1);
+    filter: brightness(1);
+}
+
+
+/* Lightbox styles (overlay when click) */
+
+.lightbox {
+    display: none;
+    /* controlled via JS */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 80%;
+    border: 5px solid #ff004e;
+    border-radius: 8px;
+}
+
+.lightbox .close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    text-shadow: 0 0 10px #ff004e;
+}
+
+
+/* testimonials design */
+
+.testimonials {
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background: #080808;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 0, 78, 0.5);
+    transform: scale(1.1);
+    transition: transform 0.3s, filter 0.3s;
+    filter: brightness(1);
+}
+
+.testimonial-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.testimonial-card h3 {
+    margin: 5px 0 2px;
+    font-size: 1.2rem;
+}
+
+.testimonial-card blockquote {
+    font-style: italic;
+    color: #f0e7e7;
+    line-height: 1.4;
+}
+
+
+/* Contact */
+
+.contact {
+    text-align: center;
+}
+
+.contact p {
+    font-size: 1.25rem;
+    color: #ddd;
+    margin: 10px 0;
+}
+
+
+/* Footer */
+
+footer {
+    background: #000000;
+    padding: 20px 0;
+    text-align: center;
+    color: #ccc;
+    font-size: 0.9rem;
+}
